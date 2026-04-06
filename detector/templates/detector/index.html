@@ -1,0 +1,85 @@
+{% extends "detector/base.html" %}
+
+{% block title %}Hate Speech Detector{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Local Django + Machine Learning</p>
+    <h1>Train a small hate-speech model and predict locally.</h1>
+    <p class="lead">
+      Upload a CSV dataset, train a scikit-learn model on your machine, and test new text without any API.
+    </p>
+  </div>
+  <div class="hero-card">
+    <p class="hero-card-label">What this app does</p>
+    <ul>
+      <li>Trains on your own CSV file</li>
+      <li>Flags hate speech with a tunable threshold</li>
+      <li>Shows transparent scores and explanations</li>
+    </ul>
+  </div>
+</section>
+
+{% if messages %}
+  <section class="messages">
+    {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </section>
+{% endif %}
+
+<section class="grid">
+  <article class="card">
+    <h2>Train Model</h2>
+    <p>Upload a CSV with <code>text</code> and <code>label</code> columns.</p>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="train">
+      {{ train_form.as_p }}
+      <button type="submit">Train</button>
+    </form>
+  </article>
+
+  <article class="card">
+    <h2>Predict Text</h2>
+    <p>Type any sentence and the model will classify it locally.</p>
+    <form method="post" id="analyze-form" data-analyze-form="true">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="predict">
+      {{ predict_form.as_p }}
+      <button type="submit" class="analyze-btn">Analyze</button>
+    </form>
+  </article>
+</section>
+
+<section class="card status">
+  <h2>Status</h2>
+  <ul>
+    <li>Dataset available: {{ status.dataset_exists }}</li>
+    <li>Model available: {{ status.model_exists }}</li>
+  </ul>
+</section>
+
+{% if metrics %}
+<section class="card">
+  <h2>Training Metrics</h2>
+  <pre>{{ metrics|safe }}</pre>
+</section>
+{% endif %}
+
+{% if results %}
+<section class="card">
+  <h2>Prediction</h2>
+  {% for result in results %}
+    <div class="prediction-item{% if result.borderline %} borderline{% endif %}">
+      <p><strong>Text:</strong> {{ result.text }}</p>
+      <p><strong>Label:</strong> {{ result.prediction }}</p>
+      <p><strong>Score:</strong> {{ result.hate_probability }}</p>
+      <p><strong>Threshold:</strong> {{ result.threshold }}</p>
+      <p><strong>Note:</strong> {{ result.note }}</p>
+    </div>
+  {% endfor %}
+</section>
+{% endif %}
+{% endblock %}

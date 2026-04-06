@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Hate Speech Detector{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'detector/style.css' %}">
+  <script defer src="{% static 'detector/app.js' %}"></script>
+</head>
+<body>
+  <div class="backdrop backdrop-a"></div>
+  <div class="backdrop backdrop-b"></div>
+  <div class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
+    <div class="loading-card">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="loading-title">Analyzing text...</p>
+      <p class="loading-copy">The model is thinking locally. This only takes a moment.</p>
+    </div>
+  </div>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-mark" src="{% static 'detector/logo.svg' %}" alt="Hate Speech Detector logo">
+      <div>
+        <p class="brand-kicker">Local ML App</p>
+        <p class="brand-name">Hate Speech Detector</p>
+      </div>
+    </div>
+    <div class="topbar-chip">Django + scikit-learn</div>
+  </header>
+  <main class="shell">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
