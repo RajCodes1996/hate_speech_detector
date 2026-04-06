@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Hate Speech Detector{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'detector/style.css' %}">
-  <script defer src="{% static 'detector/app.js' %}"></script>
+  <link rel="stylesheet" href="{% static '/detector/style.css' %}">
+  <script defer src="{% static '/detector/app.js' %}"></script>
 </head>
 <body>
   <div class="backdrop backdrop-a"></div>
@@ -20,7 +20,7 @@
   </div>
   <header class="topbar">
     <div class="brand">
-      <img class="brand-mark" src="{% static 'detector/logo.svg' %}" alt="Hate Speech Detector logo">
+      <img class="brand-mark" src="{% static '/detector/logo.svg' %}" alt="Hate Speech Detector logo">
       <div>
         <p class="brand-kicker">Local ML App</p>
         <p class="brand-name">Hate Speech Detector</p>
