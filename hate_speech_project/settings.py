@@ -5,7 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-change-this-in-production"
 DEBUG = True
-ALLOWED_HOSTS: list[str] = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS: list[str] = ["127.0.0.1", "localhost", "hate-speech-detector-tfcr.onrender.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
