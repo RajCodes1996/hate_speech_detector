@@ -1,0 +1,13 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hate Speech Detector logo">
+  <defs>
+    <linearGradient id="g" x1="16" y1="14" x2="80" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="76" height="76" rx="22" fill="url(#g)"/>
+  <path d="M29 33C29 28.5817 32.5817 25 37 25H59C63.4183 25 67 28.5817 67 33V52C67 56.4183 63.4183 60 59 60H45L34 69V60H37C32.5817 60 29 56.4183 29 52V33Z" fill="white" fill-opacity="0.95"/>
+  <path d="M36 38H60" stroke="#4F46E5" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 46H53" stroke="#4F46E5" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="59" cy="47" r="4" fill="#10B981"/>
+</svg>
