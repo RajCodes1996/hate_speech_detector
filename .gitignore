@@ -10,12 +10,15 @@ env/
 dist/
 build/
 data/raw/*.csv
+!data/raw/hate_speech.csv
 data/processed/*
 !data/processed/.gitkeep
 models/*
 !models/.gitkeep
+!models/hate_speech_model.joblib
 reports/*
 !reports/.gitkeep
+!reports/metrics.json
 .DS_Store
 Thumbs.db
 myenv
