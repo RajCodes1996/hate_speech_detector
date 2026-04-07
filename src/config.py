@@ -1,12 +1,16 @@
 from pathlib import Path
-
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
+
+# Use /var/data on Render, fall back to local BASE_DIR for localhost
+PERSISTENT_DIR = Path(os.environ.get("PERSISTENT_STORAGE_PATH", BASE_DIR))
+
+DATA_DIR = PERSISTENT_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
-MODELS_DIR = BASE_DIR / "models"
-REPORTS_DIR = BASE_DIR / "reports"
+MODELS_DIR = PERSISTENT_DIR / "models"
+REPORTS_DIR = PERSISTENT_DIR / "reports"
 
 DEFAULT_DATASET = RAW_DATA_DIR / "hate_speech.csv"
 DEFAULT_MODEL_PATH = MODELS_DIR / "hate_speech_model.joblib"
