@@ -73,6 +73,26 @@
 {% endif %}
 
 {% if results %}
+<section class="result-modal" data-result-modal="true" aria-hidden="true" hidden>
+  <div class="result-modal__backdrop" data-result-close="true"></div>
+  <div class="result-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="result-modal-title" tabindex="-1">
+    <button type="button" class="result-modal__close" aria-label="Close prediction results" data-result-close="true">&times;</button>
+    <p class="result-modal__eyebrow">Analysis Complete</p>
+    <h2 id="result-modal-title">Prediction Results</h2>
+    <div class="result-modal__content">
+      {% for result in results %}
+        <div class="prediction-item prediction-item--modal{% if result.borderline %} borderline{% endif %}">
+          <p><strong>Text:</strong> {{ result.text }}</p>
+          <p><strong>Label:</strong> {{ result.prediction }}</p>
+          <p><strong>Score:</strong> {{ result.hate_probability }}</p>
+          <p><strong>Threshold:</strong> {{ result.threshold }}</p>
+          <p><strong>Note:</strong> {{ result.note }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 <section class="card">
   <h2>Prediction</h2>
   {% for result in results %}

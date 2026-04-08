@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.querySelector(".loading-overlay");
   const analyzeForm = document.querySelector("form[data-analyze-form='true']");
   const themeToggle = document.getElementById("theme-toggle");
+  const resultModal = document.querySelector("[data-result-modal='true']");
+  const resultDialog = resultModal?.querySelector(".result-modal__dialog");
+  const resultCloseButtons = resultModal ? resultModal.querySelectorAll("[data-result-close='true']") : [];
 
   // Initial theme logic
   const currentTheme = localStorage.getItem("theme") || 
@@ -16,6 +19,47 @@ document.addEventListener("DOMContentLoaded", () => {
       
       document.documentElement.setAttribute("data-theme", targetTheme);
       localStorage.setItem("theme", targetTheme);
+    });
+  }
+
+  const openResultModal = () => {
+    if (!resultModal || !resultDialog) {
+      return;
+    }
+
+    resultModal.hidden = false;
+    resultModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    window.requestAnimationFrame(() => resultDialog.focus());
+  };
+
+  const closeResultModal = () => {
+    if (!resultModal) {
+      return;
+    }
+
+    resultModal.hidden = true;
+    resultModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  };
+
+  if (resultModal) {
+    openResultModal();
+
+    resultCloseButtons.forEach((button) => {
+      button.addEventListener("click", closeResultModal);
+    });
+
+    resultModal.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLElement && event.target.dataset.resultClose === "true") {
+        closeResultModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !resultModal.hidden) {
+        closeResultModal();
+      }
     });
   }
 
