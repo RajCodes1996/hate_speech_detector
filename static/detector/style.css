@@ -122,8 +122,19 @@ body.is-loading {
 .brand-mark {
   width: 48px;
   height: 48px;
-  /* Use CSS filter to invert logo if needed in dark mode */
-  transition: filter 0.3s ease;
+  padding: 0.35rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  object-fit: contain;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .brand-mark {
+  background: rgba(248, 250, 252, 0.96);
+  border-color: rgba(148, 163, 184, 0.22);
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.45), 0 0 18px rgba(59, 130, 246, 0.12);
 }
 
 
