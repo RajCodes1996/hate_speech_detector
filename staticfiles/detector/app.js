@@ -46,6 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (resultModal) {
     openResultModal();
 
+    const predictionField = analyzeForm?.querySelector("textarea");
+    if (predictionField) {
+      predictionField.value = "";
+    }
+
     resultCloseButtons.forEach((button) => {
       button.addEventListener("click", closeResultModal);
     });
